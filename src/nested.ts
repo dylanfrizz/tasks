@@ -177,6 +177,7 @@ export function sameType(questions: Question[]): boolean {
  * except that a blank question has been added onto the end. Reuse the `makeBlankQuestion`
  * you defined in the `objects.ts` file.
  */
+/*
 export function addNewQuestion(
     questions: Question[],
     id: number,
@@ -191,6 +192,7 @@ export function addNewQuestion(
  * the Questions are the same EXCEPT for the one with the given `targetId`. That
  * Question should be the same EXCEPT that its name should now be `newName`.
  */
+/*
 export function renameQuestionById(
     questions: Question[],
     targetId: number,
@@ -206,6 +208,7 @@ export function renameQuestionById(
  * AND if the `newQuestionType` is no longer "multiple_choice_question" than the `options`
  * must be set to an empty list.
  */
+/*
 export function changeQuestionTypeById(
     questions: Question[],
     targetId: number,
@@ -224,6 +227,7 @@ export function changeQuestionTypeById(
  * Remember, if a function starts getting too complicated, think about how a helper function
  * can make it simpler! Break down complicated tasks into little pieces.
  */
+/*
 export function editOption(
     questions: Question[],
     targetId: number,
@@ -239,6 +243,7 @@ export function editOption(
  * the duplicate inserted directly after the original question. Use the `duplicateQuestion`
  * function you defined previously; the `newId` is the parameter to use for the duplicate's ID.
  */
+/*
 export function duplicateQuestionInArray(
     questions: Question[],
     targetId: number,
@@ -246,3 +251,4 @@ export function duplicateQuestionInArray(
 ): Question[] {
     return [];
 }
+*/

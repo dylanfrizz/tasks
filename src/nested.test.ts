@@ -1,4 +1,4 @@
-import { Question, QuestionType } from "./interfaces/question";
+import { Question } from "./interfaces/question";
 import {
     getPublishedQuestions,
     getNonEmptyQuestions,
@@ -11,11 +11,6 @@ import {
     makeAnswers,
     publishAll,
     sameType,
-    addNewQuestion,
-    renameQuestionById,
-    changeQuestionTypeById,
-    editOption,
-    duplicateQuestionInArray,
 } from "./nested";
 import testQuestionData from "./data/questions.json";
 import backupQuestionData from "./data/questions.json";
