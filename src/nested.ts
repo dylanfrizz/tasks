@@ -1,5 +1,5 @@
 import { Answer } from "./interfaces/answer";
-import { Question, QuestionType } from "./interfaces/question";
+import { Question } from "./interfaces/question";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
