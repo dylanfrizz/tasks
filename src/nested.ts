@@ -1,5 +1,6 @@
 import { Answer } from "./interfaces/answer";
-import { Question } from "./interfaces/question";
+import { Question, QuestionType } from "./interfaces/question";
+import { makeBlankQuestion, duplicateQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -162,6 +163,9 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
+    if (questions.length === 0) {
+        return true;
+    }
     let theType: string = questions[0].type;
     const unSame = questions.filter(
         (questionn: Question): boolean => questionn.type != theType,
@@ -177,14 +181,15 @@ export function sameType(questions: Question[]): boolean {
  * except that a blank question has been added onto the end. Reuse the `makeBlankQuestion`
  * you defined in the `objects.ts` file.
  */
-/*
+
 export function addNewQuestion(
     questions: Question[],
     id: number,
     name: string,
     type: QuestionType,
 ): Question[] {
-    return [];
+    // newQ: Question = makeBlankQuestion(id, name, type);
+    return [...questions, makeBlankQuestion(id, name, type)];
 }
 
 /***
@@ -192,13 +197,19 @@ export function addNewQuestion(
  * the Questions are the same EXCEPT for the one with the given `targetId`. That
  * Question should be the same EXCEPT that its name should now be `newName`.
  */
-/*
+
 export function renameQuestionById(
     questions: Question[],
     targetId: number,
     newName: string,
 ): Question[] {
-    return [];
+    //const targetted = questions.map((questionn: Question): Question => questionn.id === targetId ? {...questionn, name: newName}: questionn);
+    return questions.map(
+        (questionn: Question): Question =>
+            questionn.id === targetId ?
+                { ...questionn, name: newName }
+            :   questionn,
+    );
 }
 
 /***
@@ -208,13 +219,23 @@ export function renameQuestionById(
  * AND if the `newQuestionType` is no longer "multiple_choice_question" than the `options`
  * must be set to an empty list.
  */
-/*
+
 export function changeQuestionTypeById(
     questions: Question[],
     targetId: number,
     newQuestionType: QuestionType,
 ): Question[] {
-    return [];
+    return questions.map(
+        (questionn: Question): Question =>
+            (
+                questionn.id === targetId &&
+                newQuestionType === "short_answer_question"
+            ) ?
+                { ...questionn, type: newQuestionType, options: [] }
+            : questionn.id === targetId ?
+                { ...questionn, type: newQuestionType }
+            :   questionn,
+    );
 }
 
 /**
@@ -227,14 +248,31 @@ export function changeQuestionTypeById(
  * Remember, if a function starts getting too complicated, think about how a helper function
  * can make it simpler! Break down complicated tasks into little pieces.
  */
-/*
+
 export function editOption(
     questions: Question[],
     targetId: number,
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    return [];
+    return questions.map(
+        (questionn: Question): Question =>
+            questionn.id === targetId && targetOptionIndex === -1 ?
+                {
+                    ...questionn,
+                    options: [...questionn.options, newOption],
+                }
+            : questionn.id === targetId ?
+                {
+                    ...questionn,
+                    options: questionn.options.map((opt: string): string =>
+                        questionn.options.indexOf(opt) === targetOptionIndex ?
+                            (opt = newOption)
+                        :   opt,
+                    ),
+                }
+            :   questionn,
+    );
 }
 
 /***
@@ -243,12 +281,21 @@ export function editOption(
  * the duplicate inserted directly after the original question. Use the `duplicateQuestion`
  * function you defined previously; the `newId` is the parameter to use for the duplicate's ID.
  */
-/*
+
 export function duplicateQuestionInArray(
     questions: Question[],
     targetId: number,
     newId: number,
 ): Question[] {
-    return [];
+    return [
+        ...questions.slice(
+            0,
+            questions.indexOf(findQuestion(questions, targetId)!) + 1,
+        ),
+        duplicateQuestion(newId, findQuestion(questions, targetId)!),
+        ...questions.slice(
+            questions.indexOf(findQuestion(questions, targetId)!) + 1,
+        ),
+    ];
+    //return [...questions, duplicateQuestion(newId, questions[targetId])];
 }
-*/
