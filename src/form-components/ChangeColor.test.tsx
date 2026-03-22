@@ -16,28 +16,28 @@ describe("ChangeColor Component tests", () => {
         await act(async () => {
             radios[0].click();
         });
-        let coloredBox = screen.getAllByTestId("colored-box"); //changed to All
-        expect(coloredBox[0]).toHaveTextContent(radios[0].value); // added [0]
+        let coloredBox = screen.getByTestId("colored-box"); //changed to All
+        expect(coloredBox).toHaveTextContent(radios[0].value); // added [0]
         expect(coloredBox).toHaveStyle({ backgroundColor: radios[0].value });
         // Switch to third
         await act(async () => {
             radios[2].click();
         });
-        coloredBox[0] = screen.getByTestId("colored-box"); //added [0]
+        coloredBox = screen.getByTestId("colored-box"); //added [0]
         expect(coloredBox).toHaveTextContent(radios[2].value);
         expect(coloredBox).toHaveStyle({ backgroundColor: radios[2].value });
         // Switch to 8th
         await act(async () => {
             radios[7].click();
         });
-        coloredBox[0] = screen.getByTestId("colored-box"); //added [0]
+        coloredBox = screen.getByTestId("colored-box"); //added [0]
         expect(coloredBox).toHaveTextContent(radios[7].value);
         expect(coloredBox).toHaveStyle({ backgroundColor: radios[7].value });
         // Switch back to first
         await act(async () => {
             radios[0].click();
         });
-        coloredBox[0] = screen.getByTestId("colored-box"); //added [0]
+        coloredBox = screen.getByTestId("colored-box"); //added [0]
         expect(coloredBox).toHaveTextContent(radios[0].value);
         expect(coloredBox).toHaveStyle({ backgroundColor: radios[0].value });
     });

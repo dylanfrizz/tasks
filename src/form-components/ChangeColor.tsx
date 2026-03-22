@@ -42,21 +42,20 @@ export function ChangeColor(): React.JSX.Element {
                         name="colors"
                         onChange={updateColor}
                         id={colorr}
-                        label={
-                            <span style={createBackground(colorr)}>
-                                {colorr}
-                            </span>
-                        }
+                        label={colorr}
                         value={colorr}
                         key={colorr}
-                        data-testid="colored-box"
                         checked={color === colorr}
                     />
                 ))}
             </div>
-            <div>
-                you have chosen <span style={colorStyle}>{color}</span>.
-            </div>
+            <span>
+                you have chosen{" "}
+                <span style={createBackground(color)} data-testid="colored-box">
+                    {color}
+                </span>
+                .
+            </span>
         </div>
     );
 }
