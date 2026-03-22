@@ -10,7 +10,6 @@ const COLORS = [
     "cyan",
     "magenta",
     "white",
-    "black",
 ];
 const DEFAULT_COLOR = COLORS[0];
 export function ChangeColor(): React.JSX.Element {
@@ -18,31 +17,45 @@ export function ChangeColor(): React.JSX.Element {
     function updateColor(event: React.ChangeEvent<HTMLInputElement>) {
         setColor(event.target.value);
     }
-
+    //let colorStyle: React.CSSProperties;
     const colorStyle: React.CSSProperties = {
         backgroundColor: color,
         padding: "2px 4px",
         borderRadius: "4px",
     };
+
+    function createBackground(colorr: string): React.CSSProperties {
+        let colorStyle: React.CSSProperties = {
+            backgroundColor: colorr,
+            padding: "2px 4px",
+            borderRadius: "4px",
+        };
+        return colorStyle;
+    }
     return (
         <div>
             <div>
-                {COLORS.map((color: string) => (
+                {COLORS.map((colorr: string) => (
                     <Form.Check
                         inline
                         type="radio"
                         name="colors"
                         onChange={updateColor}
-                        id="colored-box"
-                        label={color}
-                        value={color}
-                        key={color}
+                        id={colorr}
+                        label={
+                            <span style={createBackground(colorr)}>
+                                {colorr}
+                            </span>
+                        }
+                        value={colorr}
+                        key={colorr}
                         data-testid="colored-box"
+                        checked={color === colorr}
                     />
                 ))}
             </div>
             <div>
-                you have chosen <span style={colorStyle}>{color}</span>
+                you have chosen <span style={colorStyle}>{color}</span>.
             </div>
         </div>
     );
