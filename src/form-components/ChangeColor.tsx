@@ -18,11 +18,6 @@ export function ChangeColor(): React.JSX.Element {
         setColor(event.target.value);
     }
     //let colorStyle: React.CSSProperties;
-    const colorStyle: React.CSSProperties = {
-        backgroundColor: color,
-        padding: "2px 4px",
-        borderRadius: "4px",
-    };
 
     function createBackground(colorr: string): React.CSSProperties {
         let colorStyle: React.CSSProperties = {
